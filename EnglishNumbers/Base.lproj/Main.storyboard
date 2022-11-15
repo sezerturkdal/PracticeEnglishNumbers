@@ -16,16 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="75" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfP-Gh-Z0R">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="75" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfP-Gh-Z0R">
                                 <rect key="frame" x="101" y="228" width="189" height="198"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="198" id="URg-aI-xLg"/>
+                                    <constraint firstAttribute="width" constant="189" id="iWj-m0-H0O"/>
                                     <constraint firstAttribute="height" constant="198" id="kma-Ga-opM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="80"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="microphone" translatesAutoresizingMaskIntoConstraints="NO" id="uyf-f7-ydh">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="micOn" translatesAutoresizingMaskIntoConstraints="NO" id="uyf-f7-ydh">
                                 <rect key="frame" x="91" y="562" width="208" height="170"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="170" id="uGQ-Mn-kdZ"/>
@@ -52,6 +54,11 @@
                             <constraint firstItem="1a4-Yz-J8a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="142" id="vaE-1b-JsL"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imgMic" destination="uyf-f7-ydh" id="v47-5f-JxX"/>
+                        <outlet property="imgResult" destination="1a4-Yz-J8a" id="3nB-uf-1IS"/>
+                        <outlet property="lblNumber" destination="vfP-Gh-Z0R" id="wS4-Or-I96"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -60,7 +67,7 @@
     </scenes>
     <resources>
         <image name="Ok" width="256" height="256"/>
-        <image name="microphone" width="512" height="512"/>
+        <image name="micOn" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
