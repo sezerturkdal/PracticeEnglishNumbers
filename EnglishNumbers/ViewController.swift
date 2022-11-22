@@ -12,6 +12,7 @@ import AVKit
 class ViewController: UIViewController, SFSpeechRecognizerDelegate {
 
     
+    @IBOutlet weak var lblNext: UILabel!
     @IBOutlet weak var imgResult: UIImageView!
     @IBOutlet weak var lblNumber: UILabel!
     @IBOutlet weak var imgMic: UIImageView!
@@ -23,22 +24,35 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     var spokenNumber=""
     var isMicOpen = false
+    var failTimes = 0
     var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupSpeech()
         imgResult.isHidden = true
+        lblNext.isHidden = true
         
         generateRandomNumber()
         
         imgMic.isUserInteractionEnabled=true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(btnMic_Clicked))
         imgMic.addGestureRecognizer(gestureRecognizer)
+        
+        lblNext.isUserInteractionEnabled=true
+        let gestureRecognizerNext = UITapGestureRecognizer(target: self, action: #selector(lblNext_Clicked))
+        lblNext.addGestureRecognizer(gestureRecognizerNext)
     }
     
     func generateRandomNumber(){
         lblNumber.text = String(Int.random(in: 10..<100))
+    }
+    @objc func lblNext_Clicked(){
+        lblNext.isHidden = true
+        imgResult.isHidden = true
+        isMicOpen = false
+        generateRandomNumber()
+        failTimes = 0
     }
     
     @objc func btnMic_Clicked() {
@@ -127,11 +141,16 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         if lblNumber.text == spokenNumber{
             imgResult.isHidden = false
             imgResult.image = UIImage(named: "Ok")
+            failTimes = 0
             
             timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(changeResultImg), userInfo: nil, repeats: true)
         }else{
             imgResult.isHidden = false
             imgResult.image = UIImage(named: "error")
+            failTimes+=1
+            if failTimes > 2 {
+                lblNext.isHidden = false
+            }
         }
     }
     
