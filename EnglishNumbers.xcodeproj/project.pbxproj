@@ -14,6 +14,7 @@
 		E51CB1802923FF4C004EED3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E51CB17E2923FF4C004EED3A /* Main.storyboard */; };
 		E51CB1822923FF4F004EED3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E51CB1812923FF4F004EED3A /* Assets.xcassets */; };
 		E51CB1852923FF4F004EED3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E51CB1832923FF4F004EED3A /* LaunchScreen.storyboard */; };
+		E560E0E6292EAA4800D22E7A /* success.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E560E0E5292EA8C000D22E7A /* success.m4a */; };
 		E5930FB4292D6A2E0049D194 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5930FB3292D6A2E0049D194 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		E51CB1812923FF4F004EED3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E51CB1842923FF4F004EED3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E51CB1862923FF4F004EED3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E560E0E5292EA8C000D22E7A /* success.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = success.m4a; sourceTree = "<group>"; };
 		E5930FB3292D6A2E0049D194 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FD11560FE87C1ED73CE98C8C /* Pods-EnglishNumbers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishNumbers.release.xcconfig"; path = "Target Support Files/Pods-EnglishNumbers/Pods-EnglishNumbers.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +79,7 @@
 				E51CB17A2923FF4C004EED3A /* SceneDelegate.swift */,
 				E51CB17C2923FF4C004EED3A /* ViewController.swift */,
 				E5930FB3292D6A2E0049D194 /* SettingsViewController.swift */,
+				E560E0E5292EA8C000D22E7A /* success.m4a */,
 				E51CB17E2923FF4C004EED3A /* Main.storyboard */,
 				E51CB1812923FF4F004EED3A /* Assets.xcassets */,
 				E51CB1832923FF4F004EED3A /* LaunchScreen.storyboard */,
@@ -91,7 +94,6 @@
 				C206500454544A6752AA02E7 /* Pods-EnglishNumbers.debug.xcconfig */,
 				FD11560FE87C1ED73CE98C8C /* Pods-EnglishNumbers.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -155,6 +157,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E560E0E6292EAA4800D22E7A /* success.m4a in Resources */,
 				E51CB1852923FF4F004EED3A /* LaunchScreen.storyboard in Resources */,
 				E51CB1822923FF4F004EED3A /* Assets.xcassets in Resources */,
 				E51CB1802923FF4C004EED3A /* Main.storyboard in Resources */,

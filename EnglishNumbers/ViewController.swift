@@ -138,16 +138,22 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     }
     
     func checkTruth(){
+        
         if lblNumber.text == spokenNumber{
             imgResult.isHidden = false
             imgResult.image = UIImage(named: "Ok")
             failTimes = 0
             
+            playSound(sound: "success", type: "m4a")
             timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(changeResultImg), userInfo: nil, repeats: true)
         }else{
             imgResult.isHidden = false
             imgResult.image = UIImage(named: "error")
             failTimes+=1
+            
+            let generator = UIImpactFeedbackGenerator(style: .heavy)
+            generator.impactOccurred()
+            
             if failTimes > 2 {
                 lblNext.isHidden = false
             }
@@ -178,7 +184,22 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
                 }
               //  self.isMicOpen = isButtonEnabled
             }
+    }
+    
+    var audioPlayer: AVAudioPlayer?
+    func playSound(sound: String, type: String) {
+        if let path = Bundle.main.path(forResource: sound, ofType: type) {
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
+                try AVAudioSession.sharedInstance().setActive(true)
+
+                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+                audioPlayer?.play()
+            } catch {
+                print("ERROR")
+            }
         }
+    }
 
 
 
