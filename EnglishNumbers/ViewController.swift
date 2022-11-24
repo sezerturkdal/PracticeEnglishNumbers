@@ -26,14 +26,13 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     var isMicOpen = false
     var failTimes = 0
     var timer = Timer()
+    var selectedRange = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupSpeech()
         imgResult.isHidden = true
         lblNext.isHidden = true
-        
-        generateRandomNumber()
         
         imgMic.isUserInteractionEnabled=true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(btnMic_Clicked))
@@ -44,14 +43,29 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         lblNext.addGestureRecognizer(gestureRecognizerNext)
     }
     
-    func generateRandomNumber(){
-        lblNumber.text = String(Int.random(in: 10..<100))
+    override func viewDidAppear(_ animated: Bool) {
+        if let SelectedRange = UserDefaults.standard.string(forKey: "SelectedRange"){
+            if SelectedRange == "0"{
+                self.selectedRange = 10
+            }else if SelectedRange == "1"{
+                self.selectedRange = 100
+            }else if SelectedRange == "2"{
+                self.selectedRange = 1000
+            }else{
+                self.selectedRange = 10
+            }
+        }
+        generateRandomNumber(num: self.selectedRange)
+    }
+    
+    func generateRandomNumber(num: Int){
+        lblNumber.text = String(Int.random(in: 0..<num))
     }
     @objc func lblNext_Clicked(){
         lblNext.isHidden = true
         imgResult.isHidden = true
         isMicOpen = false
-        generateRandomNumber()
+        generateRandomNumber(num: self.selectedRange)
         failTimes = 0
     }
     
@@ -163,7 +177,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     @objc func changeResultImg(){
         timer.invalidate()
         imgResult.isHidden = true
-        generateRandomNumber()
+        generateRandomNumber(num: self.selectedRange)
     }
     
     func setupSpeech() {
