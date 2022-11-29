@@ -73,22 +73,5 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         selectedLevel = pickerView.selectedRow(inComponent: 0)
         UserDefaults.standard.set(pckRange.selectedRow(inComponent: 0), forKey: "SelectedRange")
     }
-    
-    
-    
-    
-   
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

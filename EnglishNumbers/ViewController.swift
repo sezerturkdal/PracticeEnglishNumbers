@@ -27,6 +27,8 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     var failTimes = 0
     var timer = Timer()
     var selectedRange = 10
+    var isVibrationOpen = true
+    var isSoundOpen = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +57,17 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
                 self.selectedRange = 10
             }
         }
-        generateRandomNumber(num: self.selectedRange)
+        if let IsSoundOn = UserDefaults.standard.string(forKey: "IsSoundOn"){
+            let _sound = NSString(string: IsSoundOn)
+            isSoundOpen = _sound.boolValue
+        }
+        if let IsVibrationOn = UserDefaults.standard.string(forKey: "IsVibrationOn"){
+            let _vibration = NSString(string: IsVibrationOn)
+            isVibrationOpen = _vibration.boolValue
+        }
+        self.stopRecording()
+        imgMic.image = UIImage(named: "micOn")
+        lblNext_Clicked()
     }
     
     func generateRandomNumber(num: Int){
@@ -152,25 +164,66 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     }
     
     func checkTruth(){
-        
         if lblNumber.text == spokenNumber{
-            imgResult.isHidden = false
-            imgResult.image = UIImage(named: "Ok")
-            failTimes = 0
-            
-            playSound(sound: "success", type: "m4a")
-            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(changeResultImg), userInfo: nil, repeats: true)
+            self.successful()
         }else{
+            let secondControl = secondCheck(num: spokenNumber)
+            if secondControl == true{
+                self.successful()
+                return
+            }
+            
             imgResult.isHidden = false
             imgResult.image = UIImage(named: "error")
             failTimes+=1
             
-            let generator = UIImpactFeedbackGenerator(style: .heavy)
-            generator.impactOccurred()
-            
+            sendVibration()
+       
             if failTimes > 2 {
                 lblNext.isHidden = false
             }
+        }
+    }
+    
+    func successful(){
+        imgResult.isHidden = false
+        imgResult.image = UIImage(named: "Ok")
+        failTimes = 0
+        
+        playSound(sound: "success", type: "m4a")
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(changeResultImg), userInfo: nil, repeats: true)
+    }
+    
+    func secondCheck(num: String)-> Bool {
+        if (num == "One" && lblNumber.text == "1"){
+            return true
+        }else if (num == "Two" && lblNumber.text == "2"){
+            return true
+        }else if (num == "Three" && lblNumber.text == "3"){
+            return true
+        }else if (num == "Four" && lblNumber.text == "4"){
+            return true
+        }else if (num == "Five" && lblNumber.text == "5"){
+            return true
+        }else if (num == "Six" && lblNumber.text == "6"){
+            return true
+        }else if (num == "Seven" && lblNumber.text == "7"){
+            return true
+        }else if (num == "Eight" && lblNumber.text == "8"){
+            return true
+        }else if (num == "Nine" && lblNumber.text == "9"){
+            return true
+        }else if (num == "Ten" && lblNumber.text == "10"){
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    func sendVibration(){
+        if isVibrationOpen{
+            let tapticFeedback = UINotificationFeedbackGenerator()
+            tapticFeedback.notificationOccurred(.warning)
         }
     }
     
@@ -202,21 +255,19 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     var audioPlayer: AVAudioPlayer?
     func playSound(sound: String, type: String) {
-        if let path = Bundle.main.path(forResource: sound, ofType: type) {
-            do {
-                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
-                try AVAudioSession.sharedInstance().setActive(true)
+        if isSoundOpen{
+            if let path = Bundle.main.path(forResource: sound, ofType: type) {
+                do {
+                    try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
+                    try AVAudioSession.sharedInstance().setActive(true)
 
-                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
-                audioPlayer?.play()
-            } catch {
-                print("ERROR")
+                    audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+                    audioPlayer?.play()
+                } catch {
+                    print("ERROR")
+                }
             }
         }
     }
-
-
-
-
 }
 
