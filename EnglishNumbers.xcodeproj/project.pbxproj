@@ -16,6 +16,7 @@
 		E51CB1852923FF4F004EED3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E51CB1832923FF4F004EED3A /* LaunchScreen.storyboard */; };
 		E560E0E6292EAA4800D22E7A /* success.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E560E0E5292EA8C000D22E7A /* success.m4a */; };
 		E5930FB4292D6A2E0049D194 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5930FB3292D6A2E0049D194 /* SettingsViewController.swift */; };
+		E5A95B252958BB1500AC4548 /* BrandonText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E5A95B242958BAF400AC4548 /* BrandonText-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		E51CB1862923FF4F004EED3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E560E0E5292EA8C000D22E7A /* success.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = success.m4a; sourceTree = "<group>"; };
 		E5930FB3292D6A2E0049D194 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E5A95B242958BAF400AC4548 /* BrandonText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BrandonText-Regular.otf"; sourceTree = "<group>"; };
 		FD11560FE87C1ED73CE98C8C /* Pods-EnglishNumbers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishNumbers.release.xcconfig"; path = "Target Support Files/Pods-EnglishNumbers/Pods-EnglishNumbers.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +77,7 @@
 		E51CB1772923FF4C004EED3A /* EnglishNumbers */ = {
 			isa = PBXGroup;
 			children = (
+				E5A95B232958BADD00AC4548 /* Fonts */,
 				E51CB1782923FF4C004EED3A /* AppDelegate.swift */,
 				E51CB17A2923FF4C004EED3A /* SceneDelegate.swift */,
 				E51CB17C2923FF4C004EED3A /* ViewController.swift */,
@@ -86,6 +89,14 @@
 				E51CB1862923FF4F004EED3A /* Info.plist */,
 			);
 			path = EnglishNumbers;
+			sourceTree = "<group>";
+		};
+		E5A95B232958BADD00AC4548 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E5A95B242958BAF400AC4548 /* BrandonText-Regular.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		F77AC66B2FC07A51EDB2467F /* Pods */ = {
@@ -158,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E560E0E6292EAA4800D22E7A /* success.m4a in Resources */,
+				E5A95B252958BB1500AC4548 /* BrandonText-Regular.otf in Resources */,
 				E51CB1852923FF4F004EED3A /* LaunchScreen.storyboard in Resources */,
 				E51CB1822923FF4F004EED3A /* Assets.xcassets in Resources */,
 				E51CB1802923FF4C004EED3A /* Main.storyboard in Resources */,

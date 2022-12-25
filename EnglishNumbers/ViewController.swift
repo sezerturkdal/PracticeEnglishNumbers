@@ -129,6 +129,8 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     }
 
     func startRecording() {
+        imgResult.isHidden = true
+        lblResultDesc.isHidden = true
         beginAnimation()
         isMicOpen = true
         spokenNumber = ""
@@ -240,7 +242,9 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     }
     
     func secondCheck(num: String)-> Bool {
-        if (num == "One" && lblNumber.text == "1"){
+        if (num == "Zero" && lblNumber.text == "0"){
+            return true
+        }else if (num == "One" && lblNumber.text == "1"){
             return true
         }else if (num == "Two" && lblNumber.text == "2"){
             return true

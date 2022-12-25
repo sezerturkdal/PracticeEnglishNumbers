@@ -25,5 +25,9 @@
 	<string>It&apos;s necessary for practice</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>It&apos;s necessary for practice</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>BrandonText-Regular.otf</string>
+	</array>
 </dict>
 </plist>
