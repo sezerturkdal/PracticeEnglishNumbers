@@ -16,6 +16,9 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     @IBOutlet weak var imgResult: UIImageView!
     @IBOutlet weak var lblNumber: UILabel!
     @IBOutlet weak var imgMic: UIImageView!
+    @IBOutlet weak var roundedLayer: UIView!
+    @IBOutlet weak var lblResultDesc: UILabel!
+    @IBOutlet weak var animationAreaLayer: UIView!
     
     let speechRecognizer        = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
     var recognitionRequest      : SFSpeechAudioBufferRecognitionRequest?
@@ -29,11 +32,18 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     var selectedRange = 10
     var isVibrationOpen = true
     var isSoundOpen = true
+    var animationTimer: Timer?
+    let animationTimeInterval: TimeInterval = 0.6
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupSpeech()
+        roundedLayer.clipsToBounds = true
+        roundedLayer.layer.cornerRadius = 65
+        roundedLayer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
         imgResult.isHidden = true
+        lblResultDesc.isHidden = true
         lblNext.isHidden = true
         
         imgMic.isUserInteractionEnabled=true
@@ -66,7 +76,6 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             isVibrationOpen = _vibration.boolValue
         }
         self.stopRecording()
-        imgMic.image = UIImage(named: "micOn")
         lblNext_Clicked()
     }
     
@@ -76,6 +85,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     @objc func lblNext_Clicked(){
         lblNext.isHidden = true
         imgResult.isHidden = true
+        lblResultDesc.isHidden = true
         isMicOpen = false
         generateRandomNumber(num: self.selectedRange)
         failTimes = 0
@@ -88,11 +98,39 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             case true:
                 self.stopRecording()
             }
-        }
+    }
+    
+    func beginAnimation() {
+        animationAreaLayer.isHidden = false
+        timer = Timer.scheduledTimer(
+            timeInterval: animationTimeInterval,
+            target: self,
+            selector: #selector(self.showCircles),
+            userInfo: nil,
+            repeats: true
+        );
+        animationTimer = timer
+    }
+    
+    @objc func showCircles() {
+        let v1 = UIView(frame: CGRect(x: 25, y: 25, width: 170, height: 170))
+        v1.layer.borderColor = UIColor(red: 0.612, green: 0.478, blue: 0.973, alpha: 1).cgColor
+        v1.layer.borderWidth = 1
+        v1.layer.cornerRadius = v1.frame.width / 2
+        v1.sendSubviewToBack(imgMic)
+        
+        animationAreaLayer.addSubview(v1)
+        
+        let animation = CABasicAnimation(keyPath: "transform.scale")
+        animation.toValue = CATransform3DMakeScale(1.3, 1.3, 1)
+        animation.duration = 1
+        animation.timingFunction = CAMediaTimingFunction.init(name: .easeOut)
+        v1.layer.add(animation, forKey: "animation_scale")
+    }
 
     func startRecording() {
+        beginAnimation()
         isMicOpen = true
-        imgMic.image = UIImage(named: "micOff")
         spokenNumber = ""
             // Clear all previous session data and cancel task
             if recognitionTask != nil {
@@ -155,8 +193,9 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             }
         }
     @objc func stopRecording(){
+        animationAreaLayer.isHidden = true
+        animationTimer?.invalidate()
         isMicOpen = false
-        imgMic.image = UIImage(named: "micOn")
         self.audioEngine.stop()
         self.recognitionRequest?.endAudio()
         print(self.spokenNumber)
@@ -174,6 +213,9 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             }
             
             imgResult.isHidden = false
+            lblResultDesc.isHidden = false
+            lblResultDesc.textColor = UIColor(red: 1, green: 0.337, blue: 0.337, alpha: 1)
+            lblResultDesc.text = "False, try again"
             imgResult.image = UIImage(named: "error")
             failTimes+=1
             
@@ -187,7 +229,10 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     func successful(){
         imgResult.isHidden = false
-        imgResult.image = UIImage(named: "Ok")
+        lblResultDesc.isHidden = false
+        lblResultDesc.textColor = UIColor(red: 0, green: 0.737, blue: 0.424, alpha: 1)
+        lblResultDesc.text = "True"
+        imgResult.image = UIImage(named: "success")
         failTimes = 0
         
         playSound(sound: "success", type: "m4a")
@@ -230,6 +275,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     @objc func changeResultImg(){
         timer.invalidate()
         imgResult.isHidden = true
+        lblResultDesc.isHidden = true
         generateRandomNumber(num: self.selectedRange)
     }
     
