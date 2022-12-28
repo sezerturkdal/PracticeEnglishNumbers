@@ -113,12 +113,15 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     }
     
     @objc func showCircles() {
-        let v1 = UIView(frame: CGRect(x: 25, y: 25, width: 170, height: 170))
+        let v1 = UIView(frame: CGRect(x: 0, y: 0, width: imgMic.layer.bounds.height, height: imgMic.layer.bounds.height))
         v1.layer.borderColor = UIColor(red: 0.612, green: 0.478, blue: 0.973, alpha: 1).cgColor
         v1.layer.borderWidth = 1
         v1.layer.cornerRadius = v1.frame.width / 2
         v1.sendSubviewToBack(imgMic)
-        
+        v1.layer.position = CGPoint(
+            x:(animationAreaLayer.bounds.width / 2) , //-imgMic.layer.bounds.height,
+            y:animationAreaLayer.bounds.height/2)
+
         animationAreaLayer.addSubview(v1)
         
         let animation = CABasicAnimation(keyPath: "transform.scale")

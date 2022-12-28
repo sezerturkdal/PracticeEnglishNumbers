@@ -379,6 +379,7 @@
 				DEVELOPMENT_TEAM = 6ANXC2X4PY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EnglishNumbers/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "English Numbers";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -391,6 +392,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sezerturkdal.EnglishNumbers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -408,6 +410,7 @@
 				DEVELOPMENT_TEAM = 6ANXC2X4PY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EnglishNumbers/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "English Numbers";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
