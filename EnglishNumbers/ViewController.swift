@@ -38,6 +38,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupSpeech()
+        checkDarkMode()
         roundedLayer.clipsToBounds = true
         roundedLayer.layer.cornerRadius = 65
         roundedLayer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -53,6 +54,12 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         lblNext.isUserInteractionEnabled=true
         let gestureRecognizerNext = UITapGestureRecognizer(target: self, action: #selector(lblNext_Clicked))
         lblNext.addGestureRecognizer(gestureRecognizerNext)
+    }
+    
+    func checkDarkMode(){
+        if self.traitCollection.userInterfaceStyle == .dark {
+            lblNumber.textColor = UIColor.black
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -101,7 +108,6 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     }
     
     func beginAnimation() {
-        animationAreaLayer.isHidden = false
         timer = Timer.scheduledTimer(
             timeInterval: animationTimeInterval,
             target: self,
@@ -198,7 +204,6 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             }
         }
     @objc func stopRecording(){
-        animationAreaLayer.isHidden = true
         animationTimer?.invalidate()
         isMicOpen = false
         self.audioEngine.stop()
