@@ -73,5 +73,10 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         selectedLevel = pickerView.selectedRow(inComponent: 0)
         UserDefaults.standard.set(pckRange.selectedRow(inComponent: 0), forKey: "SelectedRange")
     }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        return pickerView.frame.size.width
+    }
+    
 
 }

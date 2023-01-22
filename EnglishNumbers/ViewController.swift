@@ -29,7 +29,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     var isMicOpen = false
     var failTimes = 0
     var timer = Timer()
-    var selectedRange = 10
+    var selectedRange = 100
     var isVibrationOpen = true
     var isSoundOpen = true
     var animationTimer: Timer?
@@ -42,6 +42,8 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         roundedLayer.clipsToBounds = true
         roundedLayer.layer.cornerRadius = 65
         roundedLayer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+        animationAreaLayer.backgroundColor = UIColor(red: 0.922, green: 0.941, blue: 0.996, alpha: 1)
         
         imgResult.isHidden = true
         lblResultDesc.isHidden = true
@@ -59,6 +61,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     func checkDarkMode(){
         if self.traitCollection.userInterfaceStyle == .dark {
             lblNumber.textColor = UIColor.black
+            view.backgroundColor = UIColor.black
         }
     }
     
@@ -66,12 +69,12 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         if let SelectedRange = UserDefaults.standard.string(forKey: "SelectedRange"){
             if SelectedRange == "0"{
                 self.selectedRange = 10
-            }else if SelectedRange == "1"{
-                self.selectedRange = 100
             }else if SelectedRange == "2"{
+                self.selectedRange = 100
+            }else if SelectedRange == "3"{
                 self.selectedRange = 1000
             }else{
-                self.selectedRange = 10
+                self.selectedRange = 100
             }
         }
         if let IsSoundOn = UserDefaults.standard.string(forKey: "IsSoundOn"){
@@ -120,7 +123,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     @objc func showCircles() {
         let v1 = UIView(frame: CGRect(x: 0, y: 0, width: imgMic.layer.bounds.height, height: imgMic.layer.bounds.height))
-        v1.layer.borderColor = UIColor(red: 0.612, green: 0.478, blue: 0.973, alpha: 1).cgColor
+        v1.layer.borderColor = UIColor(red: 0.212, green: 0.416, blue: 0.949, alpha: 1).cgColor
         v1.layer.borderWidth = 1
         v1.layer.cornerRadius = v1.frame.width / 2
         v1.sendSubviewToBack(imgMic)
