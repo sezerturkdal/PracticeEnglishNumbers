@@ -384,6 +384,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "English Numbers";
 				"INFOPLIST_KEY_CFBundleDisplayName[sdk=*]" = "English Numbers";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to the microphone to detect the pronunciation of the numbers you are going to say.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Allow access to speech recognition to check the correctness of the numbers you are going to say.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -417,6 +419,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "English Numbers";
 				"INFOPLIST_KEY_CFBundleDisplayName[sdk=*]" = "English Numbers";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to the microphone to detect the pronunciation of the numbers you are going to say.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Allow access to speech recognition to check the correctness of the numbers you are going to say.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

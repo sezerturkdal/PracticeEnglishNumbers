@@ -25,6 +25,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     var recognitionTask         : SFSpeechRecognitionTask?
     let audioEngine             = AVAudioEngine()
     
+    
     var spokenNumber=""
     var isMicOpen = false
     var failTimes = 0
@@ -38,6 +39,8 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupSpeech()
+        checkMicPermission()
+
         checkDarkMode()
         roundedLayer.clipsToBounds = true
         roundedLayer.layer.cornerRadius = 65
@@ -327,6 +330,19 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
                 } catch {
                     print("ERROR")
                 }
+            }
+        }
+    }
+    
+    func checkMicPermission() {
+        let isGranted = AVAudioSession.sharedInstance().recordPermission
+        if(isGranted == .denied || isGranted == .undetermined){
+            AVAudioSession.sharedInstance().requestRecordPermission { granted in
+                /*if granted {
+                    print("yes")
+                } else {
+                    print("no")
+                }*/
             }
         }
     }

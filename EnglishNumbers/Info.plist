@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>BrandonText-Regular.otf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -22,12 +26,8 @@
 		</dict>
 	</dict>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>It&apos;s necessary for practice</string>
+	<string>Allow access to speech recognition to check the correctness of the numbers you are going to say.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>It&apos;s necessary for practice</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>BrandonText-Regular.otf</string>
-	</array>
+	<string>Allow access to the microphone to detect the pronunciation of the numbers you are going to say.</string>
 </dict>
 </plist>
