@@ -77,6 +77,4 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         return pickerView.frame.size.width
     }
-    
-
 }

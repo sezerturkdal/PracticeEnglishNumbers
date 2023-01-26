@@ -25,9 +25,7 @@
 			</array>
 		</dict>
 	</dict>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Allow access to speech recognition to check the correctness of the numbers you are going to say.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Allow access to the microphone to detect the pronunciation of the numbers you are going to say.</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

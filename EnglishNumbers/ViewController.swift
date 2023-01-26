@@ -64,17 +64,21 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     func checkDarkMode(){
         if self.traitCollection.userInterfaceStyle == .dark {
             lblNumber.textColor = UIColor.black
-            view.backgroundColor = UIColor.black
+            view.backgroundColor = UIColor.white
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if let SelectedRange = UserDefaults.standard.string(forKey: "SelectedRange"){
             if SelectedRange == "0"{
                 self.selectedRange = 10
-            }else if SelectedRange == "2"{
+            }else if SelectedRange == "1"{
                 self.selectedRange = 100
-            }else if SelectedRange == "3"{
+            }else if SelectedRange == "2"{
                 self.selectedRange = 1000
             }else{
                 self.selectedRange = 100
@@ -131,7 +135,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         v1.layer.cornerRadius = v1.frame.width / 2
         v1.sendSubviewToBack(imgMic)
         v1.layer.position = CGPoint(
-            x:(animationAreaLayer.bounds.width / 2) , //-imgMic.layer.bounds.height,
+            x:(animationAreaLayer.bounds.width / 2) ,
             y:animationAreaLayer.bounds.height/2)
 
         animationAreaLayer.addSubview(v1)
