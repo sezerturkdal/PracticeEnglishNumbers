@@ -36,6 +36,8 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     var animationTimer: Timer?
     let animationTimeInterval: TimeInterval = 0.6
     
+    let synthesizer = AVSpeechSynthesizer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupSpeech()
@@ -59,6 +61,10 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         lblNext.isUserInteractionEnabled=true
         let gestureRecognizerNext = UITapGestureRecognizer(target: self, action: #selector(lblNext_Clicked))
         lblNext.addGestureRecognizer(gestureRecognizerNext)
+        
+        lblNumber.isUserInteractionEnabled=true
+        let gestureRecognizerNumber  = UITapGestureRecognizer(target: self, action: #selector(lblNumber_Clicked))
+        lblNumber.addGestureRecognizer(gestureRecognizerNumber)
     }
     
     func checkDarkMode(){
@@ -106,6 +112,20 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         isMicOpen = false
         generateRandomNumber(num: self.selectedRange)
         failTimes = 0
+    }
+    
+    @objc func lblNumber_Clicked(){
+        switch isSoundOpen {
+        case true:
+            let utterance = AVSpeechUtterance(string: lblNumber.text ?? "")
+            utterance.rate = 0.4
+            synthesizer.speak(utterance)
+        case false:
+            let soundMessage = UIAlertController(title: "Warning", message: "Turn on sound on the settings screen", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "OK", style: .default)
+            soundMessage.addAction(okButton)
+            self.present(soundMessage, animated: true, completion: nil)
+        }
     }
     
     @objc func btnMic_Clicked() {
